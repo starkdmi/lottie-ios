@@ -12,7 +12,8 @@ enum PathDirection: Int, Codable {
   case userSetClockwise = 2
   case counterClockwise = 3
   
-  /// Hotfix - some animations have direction 'd' value 0 - fallback to default value 1 in these cases
+  /// Hotfix - Issue #1302 https://github.com/airbnb/lottie-ios/issues/1302
+  /// Some animations have direction 'd' value 0 - fallback to default value 1 in these cases
   public init(from decoder: Decoder) throws {
     self = try Self(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .clockwise
   }
