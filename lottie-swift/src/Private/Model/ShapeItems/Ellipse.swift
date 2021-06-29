@@ -11,6 +11,11 @@ enum PathDirection: Int, Codable {
   case clockwise = 1
   case userSetClockwise = 2
   case counterClockwise = 3
+  
+  /// Hotfix - some animations have direction 'd' value 0 - fallback to default value 1 in these cases
+  public init(from decoder: Decoder) throws {
+    self = try Self(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .clockwise
+  }
 }
 
 /// An item that define an ellipse shape
