@@ -851,6 +851,9 @@ final public class AnimationView: LottieView {
   
   @objc override func animationWillEnterForeground() {
     updateAnimationForForegroundState()
+    if !isAnimationPlaying {
+        self.play()
+    }
   }
   
   override func animationMovedToWindow() {
